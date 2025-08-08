@@ -6,10 +6,10 @@ using System.ServiceModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
-RuntimeTypeModel.Default.RegisterProtobufSurrogates();
+//RuntimeTypeModel.Default.RegisterProtobufSurrogates();
 
 builder.Services
-    //.AddProtobufSurrogates()
+    .AddProtobufSurrogates()
     .AddCodeFirstGrpc();
 
 var app = builder.Build();
