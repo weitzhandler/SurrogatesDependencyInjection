@@ -1,13 +1,16 @@
+using GrpcService.SharedCode;
 using ProtoBuf.Grpc.Server;
+using ProtoBuf.Meta;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+RuntimeTypeModel.Default.RegisterProtobufSurrogates();
 
-var services = builder.Services;
-services.AddCodeFirstGrpc();
+builder.Services
+    //.AddProtobufSurrogates()
+    .AddCodeFirstGrpc();
 
 var app = builder.Build();
 
