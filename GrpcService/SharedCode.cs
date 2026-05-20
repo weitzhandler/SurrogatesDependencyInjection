@@ -12,8 +12,11 @@ public static class SharedCode
 
         var marshallerFactory = ProtoBufMarshallerFactory.Create(model, ProtoBufMarshallerFactory.Options.None);
         var binderConfiguration = BinderConfiguration.Create([marshallerFactory]);
+        var clientFactory = ClientFactory.Create(binderConfiguration);
 
-        return services.AddSingleton(binderConfiguration);
+        return services
+            .AddSingleton(binderConfiguration)
+            .AddSingleton(clientFactory);
     }
 
     public static void RegisterProtobufSurrogates(this RuntimeTypeModel model)
